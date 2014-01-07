@@ -12,6 +12,7 @@ using Framework.Security;
 using Framework;
 using JHSchool.Behavior.BusinessLogic;
 using FCode = Framework.Security.FeatureCodeAttribute;
+using JHSchool.Behavior.MeritAndDemerit_KH.StudentExtendControls;
 
 namespace JHSchool.Behavior.MeritAndDemerit_KH
 {
@@ -276,6 +277,17 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
                 {
                     BGW.RunWorkerAsync();
                 }
+            }
+        }
+
+        private void buttonX1_Click_1(object sender, EventArgs e)
+        {
+            SelectSchoolYearSemester fm = new SelectSchoolYearSemester(this.PrimaryKey, UserPermission);
+            fm.ShowDialog();
+
+            if (!BGW.IsBusy)
+            {
+                BGW.RunWorkerAsync();
             }
         }
     }

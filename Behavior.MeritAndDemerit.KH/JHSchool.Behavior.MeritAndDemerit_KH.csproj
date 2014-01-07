@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{82B67256-A519-4F27-BCD3-0D3BC5C0FA9D}</ProjectGuid>
+    <ProjectGuid>{6A684DA3-49DF-4B8C-9BB1-F0EF973F31A2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JHSchool.Behavior.MeritAndDemerit_KH</RootNamespace>
@@ -40,55 +40,55 @@
       <HintPath>..\..\FiscaRuntime\components\DevComponents.DotNetBar2.dll</HintPath>
     </Reference>
     <Reference Include="FISCA">
-      <HintPath>..\..\FiscaRuntime\kernel\FISCA.dll</HintPath>
+      <HintPath>Library\FISCA.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FISCA.DSAClient">
-      <HintPath>..\..\FiscaRuntime\kernel\FISCA.DSAClient.dll</HintPath>
+      <HintPath>Library\FISCA.DSAClient.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FISCA.DSAUtil">
-      <HintPath>..\..\FiscaRuntime\kernel\FISCA.DSAUtil.dll</HintPath>
+      <HintPath>Library\FISCA.DSAUtil.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FISCA.LogAgent">
-      <HintPath>..\..\FiscaRuntime\kernel\FISCA.LogAgent.dll</HintPath>
+      <HintPath>Library\FISCA.LogAgent.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FISCA.Permission">
-      <HintPath>..\..\FiscaRuntime\kernel\FISCA.Permission.dll</HintPath>
+      <HintPath>Library\FISCA.Permission.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FISCA.Presentation">
-      <HintPath>..\..\FiscaRuntime\kernel\FISCA.Presentation.dll</HintPath>
+      <HintPath>Library\FISCA.Presentation.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Framework">
-      <HintPath>..\..\FiscaRuntime\modules\JHCore\Framework.dll</HintPath>
+      <HintPath>Library\Framework.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="JHSchool">
-      <HintPath>..\..\FiscaRuntime\modules\JHCore\JHSchool.dll</HintPath>
+      <HintPath>Library\JHSchool.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="JHSchool.Behavior">
-      <HintPath>..\..\FiscaRuntime\modules\JHBehavior\JHSchool.Behavior.dll</HintPath>
+      <HintPath>Library\JHSchool.Behavior.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="JHSchool.Data">
-      <HintPath>..\..\FiscaRuntime\modules\JHCore\JHSchool.Data.dll</HintPath>
+      <HintPath>Library\JHSchool.Data.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="K12.Data">
-      <HintPath>..\..\FiscaRuntime\modules\JHCore\K12.Data.dll</HintPath>
+      <HintPath>Library\K12.Data.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="K12.Presentation">
-      <HintPath>..\..\FiscaRuntime\modules\JHCore\K12.Presentation.dll</HintPath>
+      <HintPath>Library\K12.Presentation.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="SmartSchool.Common">
-      <HintPath>..\..\FiscaRuntime\modules\JHCore\SmartSchool.Common.dll</HintPath>
+      <HintPath>Library\SmartSchool.Common.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -161,6 +161,12 @@
       <DependentUpon>MutiMeritDemerit.cs</DependentUpon>
     </Compile>
     <Compile Include="StudentExtendControls\Ribbon\SummarySetupObj.cs" />
+    <Compile Include="StudentExtendControls\SelectSchoolYearSemester.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentExtendControls\SelectSchoolYearSemester.Designer.cs">
+      <DependentUpon>SelectSchoolYearSemester.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
