@@ -224,6 +224,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
 
                 foreach (AutoSummaryRecord each in AutoSummaryList)
                 {
+                    if (each.DemeritA + each.DemeritB + each.DemeritC + each.MeritA + each.MeritB + each.MeritC == 0) continue;
                     ListViewItem itms = new ListViewItem(each.SchoolYear.ToString());
                     itms.SubItems.Add(each.Semester.ToString());
 
