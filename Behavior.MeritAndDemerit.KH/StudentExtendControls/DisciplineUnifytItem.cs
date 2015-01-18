@@ -12,7 +12,6 @@ using Framework.Security;
 using Framework;
 using JHSchool.Behavior.BusinessLogic;
 using FCode = Framework.Security.FeatureCodeAttribute;
-using JHSchool.Behavior.MeritAndDemerit_KH.StudentExtendControls;
 
 namespace JHSchool.Behavior.MeritAndDemerit_KH
 {
@@ -55,6 +54,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
             {
                 this.listView.MouseDoubleClick -= new System.Windows.Forms.MouseEventHandler(this.listView_MouseDoubleClick);
                 btnEdit.Enabled = UserPermission.Editable;
+                btnNewItem.Enabled = UserPermission.Editable;
             }
 
         }
