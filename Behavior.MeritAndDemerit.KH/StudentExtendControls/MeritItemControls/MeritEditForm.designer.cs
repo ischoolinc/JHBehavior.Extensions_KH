@@ -124,7 +124,7 @@
             this.txtReason.Border.Class = "TextBoxBorder";
             this.txtReason.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtReason.Location = new System.Drawing.Point(88, 168);
-            this.txtReason.MaxLength = 100;
+            this.txtReason.MaxLength = 200;
             this.txtReason.Multiline = true;
             this.txtReason.Name = "txtReason";
             this.txtReason.Size = new System.Drawing.Size(215, 95);
