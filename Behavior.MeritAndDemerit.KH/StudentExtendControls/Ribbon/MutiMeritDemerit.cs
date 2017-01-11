@@ -162,32 +162,45 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
                 //}
 
                 List<K12.Data.MeritRecord> MeritList = GetMeritList();
-                try
-                {
-                    K12.Data.Merit.Insert(MeritList);
+
+                if (MeritList.Count > 0) {
+                    try
+                    {
+                        K12.Data.Merit.Insert(MeritList);
+                    }
+                    catch (Exception ex)
+                    {
+                        MsgBox.Show("新增獎勵失敗\n" + ex.Message);
+                        return;
+                    }
+                    ApplicationLog.Log("學務系統.獎勵登錄", "獎勵快速登錄", sb.ToString());
+                    MsgBox.Show("新增獎勵成功!");                                
                 }
-                catch (Exception ex)
-                {
-                    MsgBox.Show("新增獎勵失敗\n" + ex.Message);
-                    return;
-                }
-                ApplicationLog.Log("學務系統.獎勵登錄", "獎勵快速登錄", sb.ToString());
-                MsgBox.Show("新增獎勵成功!");
+
+   
             }
             else //懲戒
             {
                 List<K12.Data.DemeritRecord> DemeritList = GetDemeritList();
-                try
+
+                if (DemeritList.Count>0)
                 {
-                    K12.Data.Demerit.Insert(DemeritList);
+                    try
+                    {
+                        K12.Data.Demerit.Insert(DemeritList);
+                    }
+                    catch (Exception ex)
+                    {
+                        MsgBox.Show("新增懲戒失敗\n" + ex.Message);
+                        return;
+                    }
+                    ApplicationLog.Log("學務系統.懲戒登錄", "懲戒快速登錄", sb.ToString());
+                    MsgBox.Show("新增懲戒成功!");
+                
+                
                 }
-                catch (Exception ex)
-                {
-                    MsgBox.Show("新增懲戒失敗\n" + ex.Message);
-                    return;
-                }
-                ApplicationLog.Log("學務系統.懲戒登錄", "懲戒快速登錄", sb.ToString());
-                MsgBox.Show("新增懲戒成功!");
+
+   
             }
             this.Close();
         }
