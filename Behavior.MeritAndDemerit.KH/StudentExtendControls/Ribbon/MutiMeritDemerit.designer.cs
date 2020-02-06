@@ -37,6 +37,15 @@
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.dateTimeInput1 = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRemark = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonX2 = new DevComponents.DotNetBar.ButtonX();
             this.buttonX3 = new DevComponents.DotNetBar.ButtonX();
             this.integerInput1 = new DevComponents.Editors.IntegerInput();
@@ -66,14 +75,8 @@
             this.comboItem3 = new DevComponents.Editors.ComboItem();
             this.comboItem4 = new DevComponents.Editors.ComboItem();
             this.comboItem5 = new DevComponents.Editors.ComboItem();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbxRemark = new DevComponents.DotNetBar.LabelX();
+            this.cbRemark = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeInput1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.integerInput1)).BeginInit();
@@ -178,6 +181,7 @@
             this.Column7,
             this.Column8,
             this.Column9,
+            this.colRemark,
             this.Column13});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
@@ -194,9 +198,75 @@
             this.dataGridViewX1.RowHeadersVisible = false;
             this.dataGridViewX1.RowTemplate.Height = 24;
             this.dataGridViewX1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewX1.Size = new System.Drawing.Size(699, 322);
-            this.dataGridViewX1.TabIndex = 11;
+            this.dataGridViewX1.Size = new System.Drawing.Size(759, 322);
+            this.dataGridViewX1.TabIndex = 12;
             this.dataGridViewX1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewX1_CellValueChanged);
+            // 
+            // Column1
+            // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Column1.HeaderText = "班級";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 60;
+            // 
+            // Column2
+            // 
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightCyan;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Column2.HeaderText = "座號";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 60;
+            // 
+            // Column4
+            // 
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightCyan;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Column4.HeaderText = "學號";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 60;
+            // 
+            // Column3
+            // 
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Column3.HeaderText = "姓名";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 80;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "大功";
+            this.Column7.Name = "Column7";
+            this.Column7.Width = 60;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "小功";
+            this.Column8.Name = "Column8";
+            this.Column8.Width = 60;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "嘉獎";
+            this.Column9.Name = "Column9";
+            this.Column9.Width = 60;
+            // 
+            // colRemark
+            // 
+            this.colRemark.HeaderText = "備註";
+            this.colRemark.Name = "colRemark";
+            this.colRemark.Width = 95;
+            // 
+            // Column13
+            // 
+            this.Column13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column13.HeaderText = "事由";
+            this.Column13.Name = "Column13";
             // 
             // buttonX2
             // 
@@ -204,7 +274,7 @@
             this.buttonX2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonX2.BackColor = System.Drawing.Color.Transparent;
             this.buttonX2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX2.Location = new System.Drawing.Point(555, 428);
+            this.buttonX2.Location = new System.Drawing.Point(615, 428);
             this.buttonX2.Name = "buttonX2";
             this.buttonX2.Size = new System.Drawing.Size(75, 23);
             this.buttonX2.TabIndex = 13;
@@ -217,7 +287,7 @@
             this.buttonX3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonX3.BackColor = System.Drawing.Color.Transparent;
             this.buttonX3.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX3.Location = new System.Drawing.Point(636, 428);
+            this.buttonX3.Location = new System.Drawing.Point(696, 428);
             this.buttonX3.Name = "buttonX3";
             this.buttonX3.Size = new System.Drawing.Size(75, 23);
             this.buttonX3.TabIndex = 14;
@@ -303,7 +373,7 @@
             this.dateTimeInput2.ButtonFreeText.Checked = true;
             this.dateTimeInput2.FreeTextEntryMode = true;
             this.dateTimeInput2.IsPopupCalendarOpen = false;
-            this.dateTimeInput2.Location = new System.Drawing.Point(566, 11);
+            this.dateTimeInput2.Location = new System.Drawing.Point(626, 11);
             // 
             // 
             // 
@@ -360,7 +430,7 @@
             // 
             this.labelX4.BackgroundStyle.Class = "";
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX4.Location = new System.Drawing.Point(493, 13);
+            this.labelX4.Location = new System.Drawing.Point(551, 13);
             this.labelX4.Name = "labelX4";
             this.labelX4.Size = new System.Drawing.Size(60, 21);
             this.labelX4.TabIndex = 21;
@@ -375,10 +445,10 @@
             // 
             this.labelX5.BackgroundStyle.Class = "";
             this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX5.Location = new System.Drawing.Point(454, 42);
+            this.labelX5.Location = new System.Drawing.Point(551, 43);
             this.labelX5.Name = "labelX5";
             this.labelX5.Size = new System.Drawing.Size(60, 21);
-            this.labelX5.TabIndex = 7;
+            this.labelX5.TabIndex = 8;
             this.labelX5.Text = "事由代碼";
             // 
             // comboBoxEx1
@@ -391,10 +461,10 @@
             this.comboBoxEx1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.comboBoxEx1.FormattingEnabled = true;
             this.comboBoxEx1.ItemHeight = 19;
-            this.comboBoxEx1.Location = new System.Drawing.Point(454, 69);
+            this.comboBoxEx1.Location = new System.Drawing.Point(551, 69);
             this.comboBoxEx1.Name = "comboBoxEx1";
-            this.comboBoxEx1.Size = new System.Drawing.Size(257, 25);
-            this.comboBoxEx1.TabIndex = 8;
+            this.comboBoxEx1.Size = new System.Drawing.Size(221, 25);
+            this.comboBoxEx1.TabIndex = 9;
             this.comboBoxEx1.SelectedIndexChanged += new System.EventHandler(this.comboBoxEx1_SelectedIndexChanged);
             this.comboBoxEx1.TextChanged += new System.EventHandler(this.comboBoxEx1_TextChanged);
             this.comboBoxEx1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBoxEx1_KeyUp);
@@ -409,7 +479,7 @@
             this.textBoxX1.Location = new System.Drawing.Point(274, 69);
             this.textBoxX1.Name = "textBoxX1";
             this.textBoxX1.Size = new System.Drawing.Size(60, 25);
-            this.textBoxX1.TabIndex = 2;
+            this.textBoxX1.TabIndex = 1;
             this.textBoxX1.TextChanged += new System.EventHandler(this.textBoxX1_TextChanged);
             // 
             // textBoxX2
@@ -422,7 +492,7 @@
             this.textBoxX2.Location = new System.Drawing.Point(334, 69);
             this.textBoxX2.Name = "textBoxX2";
             this.textBoxX2.Size = new System.Drawing.Size(60, 25);
-            this.textBoxX2.TabIndex = 4;
+            this.textBoxX2.TabIndex = 3;
             this.textBoxX2.TextChanged += new System.EventHandler(this.textBoxX2_TextChanged);
             // 
             // textBoxX3
@@ -435,7 +505,7 @@
             this.textBoxX3.Location = new System.Drawing.Point(394, 69);
             this.textBoxX3.Name = "textBoxX3";
             this.textBoxX3.Size = new System.Drawing.Size(60, 25);
-            this.textBoxX3.TabIndex = 6;
+            this.textBoxX3.TabIndex = 5;
             this.textBoxX3.TextChanged += new System.EventHandler(this.textBoxX3_TextChanged);
             // 
             // labelX6
@@ -447,10 +517,10 @@
             // 
             this.labelX6.BackgroundStyle.Class = "";
             this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX6.Location = new System.Drawing.Point(274, 42);
+            this.labelX6.Location = new System.Drawing.Point(274, 43);
             this.labelX6.Name = "labelX6";
             this.labelX6.Size = new System.Drawing.Size(34, 21);
-            this.labelX6.TabIndex = 1;
+            this.labelX6.TabIndex = 0;
             this.labelX6.Text = "大功";
             // 
             // labelX7
@@ -462,10 +532,10 @@
             // 
             this.labelX7.BackgroundStyle.Class = "";
             this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX7.Location = new System.Drawing.Point(334, 42);
+            this.labelX7.Location = new System.Drawing.Point(334, 43);
             this.labelX7.Name = "labelX7";
             this.labelX7.Size = new System.Drawing.Size(34, 21);
-            this.labelX7.TabIndex = 3;
+            this.labelX7.TabIndex = 2;
             this.labelX7.Text = "小功";
             // 
             // labelX8
@@ -477,10 +547,10 @@
             // 
             this.labelX8.BackgroundStyle.Class = "";
             this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX8.Location = new System.Drawing.Point(394, 42);
+            this.labelX8.Location = new System.Drawing.Point(394, 43);
             this.labelX8.Name = "labelX8";
             this.labelX8.Size = new System.Drawing.Size(34, 21);
-            this.labelX8.TabIndex = 5;
+            this.labelX8.TabIndex = 4;
             this.labelX8.Text = "嘉獎";
             // 
             // labelX9
@@ -495,7 +565,7 @@
             this.labelX9.Location = new System.Drawing.Point(84, 71);
             this.labelX9.Name = "labelX9";
             this.labelX9.Size = new System.Drawing.Size(184, 21);
-            this.labelX9.TabIndex = 0;
+            this.labelX9.TabIndex = 23;
             this.labelX9.Text = "輸入右方空格,可控制整列內容";
             // 
             // errorProvider1
@@ -535,11 +605,11 @@
             // 
             this.labelX11.BackgroundStyle.Class = "";
             this.labelX11.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX11.Location = new System.Drawing.Point(538, 42);
+            this.labelX11.Location = new System.Drawing.Point(622, 43);
             this.labelX11.Name = "labelX11";
-            this.labelX11.Size = new System.Drawing.Size(60, 20);
-            this.labelX11.TabIndex = 9;
-            this.labelX11.Text = "<font color=\"#ED1C24\">(new)</font>類型";
+            this.labelX11.Size = new System.Drawing.Size(34, 21);
+            this.labelX11.TabIndex = 10;
+            this.labelX11.Text = "類型";
             // 
             // comboBoxEx2
             // 
@@ -555,11 +625,11 @@
             this.comboItem3,
             this.comboItem4,
             this.comboItem5});
-            this.comboBoxEx2.Location = new System.Drawing.Point(602, 40);
+            this.comboBoxEx2.Location = new System.Drawing.Point(662, 41);
             this.comboBoxEx2.Name = "comboBoxEx2";
             this.comboBoxEx2.Size = new System.Drawing.Size(109, 25);
             this.comboBoxEx2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.comboBoxEx2.TabIndex = 10;
+            this.comboBoxEx2.TabIndex = 11;
             // 
             // comboItem1
             // 
@@ -581,71 +651,43 @@
             // 
             this.comboItem5.Text = "體適能";
             // 
-            // Column1
+            // lbxRemark
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Column1.HeaderText = "班級";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 60;
+            this.lbxRemark.AutoSize = true;
+            this.lbxRemark.BackColor = System.Drawing.Color.Transparent;
             // 
-            // Column2
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightCyan;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column2.HeaderText = "座號";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 60;
             // 
-            // Column4
+            this.lbxRemark.BackgroundStyle.Class = "";
+            this.lbxRemark.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbxRemark.Location = new System.Drawing.Point(455, 43);
+            this.lbxRemark.Name = "lbxRemark";
+            this.lbxRemark.Size = new System.Drawing.Size(34, 21);
+            this.lbxRemark.TabIndex = 6;
+            this.lbxRemark.Text = "備註";
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightCyan;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Column4.HeaderText = "學號";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 60;
+            // cbRemark
             // 
-            // Column3
-            // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Column3.HeaderText = "姓名";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 80;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "大功";
-            this.Column7.Name = "Column7";
-            this.Column7.Width = 60;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "小功";
-            this.Column8.Name = "Column8";
-            this.Column8.Width = 60;
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "嘉獎";
-            this.Column9.Name = "Column9";
-            this.Column9.Width = 60;
-            // 
-            // Column13
-            // 
-            this.Column13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column13.HeaderText = "事由";
-            this.Column13.Name = "Column13";
+            this.cbRemark.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbRemark.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbRemark.DisplayMember = "Text";
+            this.cbRemark.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbRemark.Font = new System.Drawing.Font("微軟正黑體", 9.75F);
+            this.cbRemark.FormattingEnabled = true;
+            this.cbRemark.ItemHeight = 19;
+            this.cbRemark.Location = new System.Drawing.Point(454, 69);
+            this.cbRemark.Name = "cbRemark";
+            this.cbRemark.Size = new System.Drawing.Size(96, 25);
+            this.cbRemark.TabIndex = 7;
+            this.cbRemark.TextChanged += new System.EventHandler(this.cbRemark_TextChanged);
             // 
             // MutiMeritDemerit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(718, 462);
+            this.ClientSize = new System.Drawing.Size(778, 462);
+            this.Controls.Add(this.cbRemark);
+            this.Controls.Add(this.lbxRemark);
             this.Controls.Add(this.comboBoxEx2);
             this.Controls.Add(this.textBoxX3);
             this.Controls.Add(this.textBoxX2);
@@ -728,6 +770,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRemark;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
+        private DevComponents.DotNetBar.LabelX lbxRemark;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx cbRemark;
     }
 }

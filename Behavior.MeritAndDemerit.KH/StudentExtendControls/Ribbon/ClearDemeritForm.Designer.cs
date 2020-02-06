@@ -50,7 +50,7 @@
             this.labelX2.Location = new System.Drawing.Point(18, 40);
             this.labelX2.Name = "labelX2";
             this.labelX2.Size = new System.Drawing.Size(60, 21);
-            this.labelX2.TabIndex = 12;
+            this.labelX2.TabIndex = 2;
             this.labelX2.Text = "銷過說明";
             // 
             // labelX1
@@ -66,7 +66,7 @@
             this.labelX1.Location = new System.Drawing.Point(18, 10);
             this.labelX1.Name = "labelX1";
             this.labelX1.Size = new System.Drawing.Size(60, 21);
-            this.labelX1.TabIndex = 11;
+            this.labelX1.TabIndex = 0;
             this.labelX1.Text = "銷過日期";
             // 
             // btnSave
@@ -78,7 +78,7 @@
             this.btnSave.Location = new System.Drawing.Point(90, 71);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 24);
-            this.btnSave.TabIndex = 7;
+            this.btnSave.TabIndex = 4;
             this.btnSave.Text = "儲存";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -94,7 +94,7 @@
             this.txtDescription.MaxLength = 100;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(165, 25);
-            this.txtDescription.TabIndex = 10;
+            this.txtDescription.TabIndex = 3;
             this.txtDescription.WordWrap = false;
             // 
             // btnExit
@@ -106,7 +106,7 @@
             this.btnExit.Location = new System.Drawing.Point(171, 71);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 24);
-            this.btnExit.TabIndex = 8;
+            this.btnExit.TabIndex = 5;
             this.btnExit.Text = "離開";
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
@@ -169,7 +169,7 @@
             this.dateTimeInput1.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.dateTimeInput1.Name = "dateTimeInput1";
             this.dateTimeInput1.Size = new System.Drawing.Size(165, 25);
-            this.dateTimeInput1.TabIndex = 13;
+            this.dateTimeInput1.TabIndex = 1;
             // 
             // ClearDemeritForm
             // 
@@ -182,6 +182,7 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.btnExit);
+            this.DoubleBuffered = true;
             this.Name = "ClearDemeritForm";
             this.Text = "銷過作業";
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeInput1)).EndInit();

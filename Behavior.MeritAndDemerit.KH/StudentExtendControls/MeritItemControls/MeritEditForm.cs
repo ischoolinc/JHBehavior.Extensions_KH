@@ -26,9 +26,9 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
     /// </summary>
     public partial class MeritEditForm : FISCA.Presentation.Controls.BaseForm
     {
-        private List<JHStudentRecord> _students;
+        private List<K12.Data.StudentRecord> _students;
         private ErrorProvider _errorProvider;
-        private JHMeritRecord _meritRecordEditor;
+        private K12.Data.MeritRecord _meritRecordEditor;
         private Dictionary<string, string> ResonDic = new Dictionary<string, string>();
 
         //Log
@@ -38,7 +38,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
         /// Constructor，新增時使用。
         /// </summary>
         /// <param name="students"></param>
-        public MeritEditForm(List<JHStudentRecord> students)
+        public MeritEditForm(List<K12.Data.StudentRecord> students)
         {
             #region 新增
             this._students = students;
@@ -57,7 +57,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
             #endregion
         }
 
-        public MeritEditForm(List<JHStudentRecord> students, string SchoolYear, string Semester)
+        public MeritEditForm(List<K12.Data.StudentRecord> students, string SchoolYear, string Semester)
         {
             #region 新增
             this._students = students;
@@ -88,7 +88,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
         }
 
         //多載建構子
-        public MeritEditForm(List<JHStudentRecord> students, string SchoolYear, string Semester,bool LockMode)
+        public MeritEditForm(List<K12.Data.StudentRecord> students, string SchoolYear, string Semester,bool LockMode)
         {
             #region 新增
             this._students = students;
@@ -128,7 +128,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
         /// Constructor，修改時使用
         /// </summary>
         /// <param name="_demeritRecordEditor"></param>
-        public MeritEditForm(JHMeritRecord meritRecordEditor, Framework.Security.FeatureAce permission)
+        public MeritEditForm(K12.Data.MeritRecord meritRecordEditor, Framework.Security.FeatureAce permission)
         {
             #region 修改
             this._meritRecordEditor = meritRecordEditor;
@@ -148,10 +148,12 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
                 DicBeforeData.Add("嘉獎", meritRecordEditor.MeritC.Value.ToString());
             }
             DicBeforeData.Add("事由", meritRecordEditor.Reason);
+
+            DicBeforeData.Add("備註", meritRecordEditor.Remark);
             #endregion
 
-            this._students = new List<JHStudentRecord>();
-            this._students.Add(JHStudent.SelectByID(meritRecordEditor.RefStudentID));
+            this._students = new List<K12.Data.StudentRecord>();
+            this._students.Add(K12.Data.Student.SelectByID(meritRecordEditor.RefStudentID));
 
             Initialize();
 
@@ -190,6 +192,10 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
         private void MeritEditor_Load(object sender, EventArgs e)
         {
             #region Load
+
+            List<string> remarkList = tool.GerRemarkTitle("1");
+            cbRemark.Items.AddRange(remarkList.ToArray());
+
             //取得獎勵的代碼和原因清單，並放到 事由代碼 的下拉式方塊中。
             DSResponse dsrsp = Config.GetDisciplineReasonList();
             cboReasonRef.SelectedItem = null;
@@ -237,6 +243,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
                 {
                     dateTimeInput2.Text = "";
                 }
+                cbRemark.Text = _meritRecordEditor.Remark;
             }
             #endregion
         }
@@ -288,11 +295,11 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
             if (this._meritRecordEditor == null) //新增
             {
 
-                List<JHMeritRecord> LogMeritList = new List<JHMeritRecord>();
+                List<K12.Data.MeritRecord> LogMeritList = new List<K12.Data.MeritRecord>();
                 try
                 {
                     LogMeritList = Insert();
-                    JHMerit.Insert(LogMeritList);
+                    K12.Data.Merit.Insert(LogMeritList);
                 }
                 catch (Exception ex)
                 {
@@ -320,8 +327,8 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
                     {
                         sb.Append("嘉獎「" + LogMeritList[0].MeritC.Value.ToString() + "」");
                     }
-                    sb.Append("獎勵事由「" + LogMeritList[0].Reason + "」");
-
+                    sb.AppendLine("獎勵事由「" + LogMeritList[0].Reason + "」");
+                    sb.AppendLine("備註「" + LogMeritList[0].Remark + "」");
                     ApplicationLog.Log("學務系統.獎勵資料", "新增學生獎勵資料", "student", _students[0].ID, sb.ToString());
                     #endregion
                     FISCA.Presentation.Controls.MsgBox.Show("新增獎勵資料成功!");
@@ -347,9 +354,9 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
                         sb.Append("嘉獎「" + LogMeritList[0].MeritC.Value.ToString() + "」");
                     }
                     sb.AppendLine("獎勵事由「" + LogMeritList[0].Reason + "」");
-
+                    sb.AppendLine("備註「" + LogMeritList[0].Remark + "」");
                     sb.AppendLine("學生詳細資料：");
-                    foreach (JHMeritRecord each in LogMeritList)
+                    foreach (K12.Data.MeritRecord each in LogMeritList)
                     {
                         sb.Append("學生「" + each.Student.Name + "」");
 
@@ -382,7 +389,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
                 try
                 {
                     Modify();
-                    JHMerit.Update(this._meritRecordEditor);
+                    K12.Data.Merit.Update(this._meritRecordEditor);
                 }
                 catch (Exception ex)
                 {
@@ -399,6 +406,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
                 sb.AppendLine("小功「" + DicBeforeData["小功"] + "」變更為「" + this._meritRecordEditor.MeritB.Value + "」");
                 sb.AppendLine("嘉獎「" + DicBeforeData["嘉獎"] + "」變更為「" + this._meritRecordEditor.MeritC.Value + "」");
                 sb.AppendLine("獎勵事由「" + DicBeforeData["事由"] + "」變更為「" + this._meritRecordEditor.Reason + "」");
+                sb.AppendLine("備註「" + DicBeforeData["備註"] + "」變更為「" + this._meritRecordEditor.Remark + "」");
                 ApplicationLog.Log("學務系統.獎勵資料", "修改學生獎勵資料", "student", this._meritRecordEditor.Student.ID, sb.ToString());
                 #endregion
                 FISCA.Presentation.Controls.MsgBox.Show("修改獎勵資料成功!");
@@ -471,14 +479,14 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
             this.FillDataToEditor(this._meritRecordEditor);
         }
 
-        private List<JHMeritRecord> Insert()
+        private List<K12.Data.MeritRecord> Insert()
         {
-            List<JHMeritRecord> newEditors = new List<JHMeritRecord>();
+            List<K12.Data.MeritRecord> newEditors = new List<K12.Data.MeritRecord>();
 
             //對所有學生，都準備好相關的 MeritRecordEditor物件
-            foreach (JHStudentRecord sr in this._students)
+            foreach (K12.Data.StudentRecord sr in this._students)
             {
-                JHMeritRecord dre = new JHMeritRecord();
+                K12.Data.MeritRecord dre = new K12.Data.MeritRecord();
                 dre.RefStudentID = sr.ID;
                 this.FillDataToEditor(dre);
                 newEditors.Add(dre);
@@ -487,7 +495,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
         }
 
         //把畫面資料填到 Editor 中。因為新增和修改模式都會有這些程式碼，所已抽出來成為一個函數，以避免程式碼重複。
-        private void FillDataToEditor(JHMeritRecord editor)
+        private void FillDataToEditor(K12.Data.MeritRecord editor)
         {
             //把畫面的資料填回 MeritRecordEditor 物件中
 
@@ -504,7 +512,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
             {
                 editor.Reason = txtReason.Text;
             }
-
+            editor.Remark = cbRemark.Text;
             editor.OccurDate = dateTimeInput1.Value;
             if (dateTimeInput2.Text != "")
             {

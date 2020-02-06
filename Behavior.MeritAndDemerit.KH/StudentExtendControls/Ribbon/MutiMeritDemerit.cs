@@ -47,6 +47,9 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
 
             if (_DemeritOrMerit == "獎勵")
             {
+                List<string> remarkList = tool.GerRemarkTitle("1");
+                cbRemark.Items.AddRange(remarkList.ToArray());
+
                 #region 獎勵
                 DSResponse dsrsp = Config.GetDisciplineReasonList();
                 foreach (XmlElement element in dsrsp.GetContent().GetElements("Reason"))
@@ -68,6 +71,9 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
             }
             else //獎勵是預設動作
             {
+                List<string> remarkList = tool.GerRemarkTitle("0");
+                cbRemark.Items.AddRange(remarkList.ToArray());
+
                 #region 懲戒
                 labelX1.Text = "懲戒日期";
                 labelX6.Text = "大過";
@@ -234,15 +240,19 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
                     continue;
                 }
 
+                //是高雄版本,特有欄位
+                //類型
                 if (comboBoxEx2.SelectedIndex > 1)
                 {
-                    mr.Reason = "[" + comboBoxEx2.SelectedItem + "]" + row.Cells[7].Value;
+                    mr.Reason = "[" + comboBoxEx2.SelectedItem + "]" + row.Cells[8].Value;
                 }
                 else
                 {
-                    mr.Reason = "" + row.Cells[7].Value;
+                    mr.Reason = "" + row.Cells[8].Value;
                 }
 
+                //備註
+                mr.Remark = "" + row.Cells[7].Value;
                 mr.OccurDate = dateTimeInput1.Value; //獎勵日期
                 mr.RegisterDate = dateTimeInput2.Value; //登錄日期
 
@@ -252,7 +262,8 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
                     + "大功「" + row.Cells[4].Value + "」"
                     + "小功「" + row.Cells[5].Value + "」"
                     + "嘉獎「" + row.Cells[6].Value + "」"
-                    + "事由「" + mr.Reason + "」");
+                    + "備註「" + row.Cells[7].Value + "」"
+                    + "事由「" + row.Cells[8].Value + "」");
             }
 
             return MeritList;
@@ -288,13 +299,13 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
 
                 if (comboBoxEx2.SelectedIndex >= 1)
                 {
-                    mr.Reason = "[" + comboBoxEx2.SelectedItem + "]" + row.Cells[7].Value;
+                    mr.Reason = "[" + comboBoxEx2.SelectedItem + "]" + row.Cells[8].Value;
                 }
                 else
                 {
-                    mr.Reason = "" + row.Cells[7].Value;
+                    mr.Reason = "" + row.Cells[8].Value;
                 }
-
+                mr.Remark = "" + row.Cells[7].Value;
                 mr.OccurDate = dateTimeInput1.Value; //懲戒日期
                 mr.RegisterDate = dateTimeInput2.Value; //登錄日期
 
@@ -304,7 +315,8 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
                 + "大過「" + row.Cells[4].Value + "」"
                 + "小過「" + row.Cells[5].Value + "」"
                 + "警告「" + row.Cells[6].Value + "」"
-                + "事由「" + mr.Reason + "」");
+                + "備註「" + row.Cells[7].Value + "」"
+                + "事由「" + row.Cells[8].Value + "」");
             }
 
             return DemeritList;
@@ -320,7 +332,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
 
             foreach (DataGridViewRow row in dataGridViewX1.Rows)
             {
-                if (("" + row.Cells[7].Value).Trim() == "")
+                if (("" + row.Cells[8].Value).Trim() == "")
                 {
                     returnTrue = true;
                 }
@@ -365,7 +377,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
             KeyValuePair<string, string> kvp = (KeyValuePair<string, string>)comboBoxEx1.SelectedItem;
             foreach (DataGridViewRow row in dataGridViewX1.Rows)
             {
-                row.Cells[7].Value = kvp.Value;
+                row.Cells[8].Value = kvp.Value;
             }
         }
 
@@ -383,7 +395,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
 
                 foreach (DataGridViewRow row in dataGridViewX1.Rows)
                 {
-                    row.Cells[7].Value = reasonValue;
+                    row.Cells[8].Value = reasonValue;
                 }
             }
         }
@@ -397,7 +409,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
 
             foreach (DataGridViewRow row in dataGridViewX1.Rows)
             {
-                row.Cells[7].Value = reasonValue;
+                row.Cells[8].Value = reasonValue;
             }
         }
 
@@ -518,7 +530,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
                 }
 
                 //事由替換
-                if (e.ColumnIndex == 7)
+                if (e.ColumnIndex == 8)
                 {
                     DataGridViewCell cell = dataGridViewX1.Rows[e.RowIndex].Cells[e.ColumnIndex];
                     cell.Value = GetReason("" + cell.Value);
@@ -536,6 +548,14 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
             else
             {
                 return false;
+            }
+        }
+
+        private void cbRemark_TextChanged(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridViewX1.Rows)
+            {
+                row.Cells[7].Value = cbRemark.Text;
             }
         }
     }
