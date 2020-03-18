@@ -6,6 +6,7 @@ using FISCA.Presentation.Controls;
 using JHSchool.Data;
 using SmartSchool.API.PlugIn;
 using System.Text;
+using K12.Data;
 
 namespace Discipline_For_KH
 {
@@ -39,12 +40,12 @@ namespace Discipline_For_KH
                     wizard.RequiredFields.AddRange("學年度", "學期", "日期", "大功", "小功", "嘉獎");
                 }
             };
-            wizard.ImportableFields.AddRange("學年度", "學期", "日期", "大功", "小功", "嘉獎", "登錄日期");
+            wizard.ImportableFields.AddRange("學年度", "學期", "日期", "大功", "小功", "嘉獎", "登錄日期", "備註");
             wizard.Options.AddRange(chose1, chose2);
             chose1.Checked = true;
             wizard.PackageLimit = 1000;
             bool allPass = true;
-            wizard.ValidateStart += delegate(object sender, SmartSchool.API.PlugIn.Import.ValidateStartEventArgs e)
+            wizard.ValidateStart += delegate (object sender, SmartSchool.API.PlugIn.Import.ValidateStartEventArgs e)
             {
                 foreach (JHMeritRecord record in JHMerit.SelectByStudentIDs(e.List))
                     if (!CacheDiscipline.ContainsKey(record.ID))
@@ -54,7 +55,7 @@ namespace Discipline_For_KH
             };
             int insertRecords = 0;
             int updataRecords = 0;
-            wizard.ValidateRow += delegate(object sender, SmartSchool.API.PlugIn.Import.ValidateRowEventArgs e)
+            wizard.ValidateRow += delegate (object sender, SmartSchool.API.PlugIn.Import.ValidateRowEventArgs e)
             {
                 #region 驗證資料
                 bool pass = true;
@@ -83,7 +84,7 @@ namespace Discipline_For_KH
                 // 如果能等到民國1911年 還要再來處理這個Bug，那我也覺得心滿意足了哈哈
 
 
-                if (!DateTime.TryParse(e.Data["日期"], out occurdate)|| occurdate.Year <1911)
+                if (!DateTime.TryParse(e.Data["日期"], out occurdate) || occurdate.Year < 1911)
                 {
                     e.ErrorFields.Add("日期", "輸入格式為 西元年//月//日");
                     pass = false;
@@ -233,7 +234,7 @@ namespace Discipline_For_KH
                         case "登錄日期":
                             if (e.Data[field] != "")
                             {
-                                if (!DateTime.TryParse(e.Data[field], out dateTime)|| dateTime.Year<1911)
+                                if (!DateTime.TryParse(e.Data[field], out dateTime) || dateTime.Year < 1911)
                                 {
                                     e.ErrorFields.Add(field, "輸入格式為 西元年//月//日");
                                     pass = false;
@@ -241,7 +242,7 @@ namespace Discipline_For_KH
                                 break;
                             }
                             break;
-                        #endregion
+                            #endregion
                     }
                 }
 
@@ -279,7 +280,7 @@ namespace Discipline_For_KH
 
                 if (檢查是否獎都是0)
                 {
-                    e.WarningFields["日期"] = "將建立隻數為0的獎勵資料";
+                    e.WarningFields["日期"] = "將建立支數為0的獎勵資料";
                 }
 
                 if (檢查獎是空值)
@@ -322,7 +323,7 @@ namespace Discipline_For_KH
                 }
             };
             wizard.ImportComplete += (sender, e) => MessageBox.Show("匯入完成!");
-            wizard.ImportPackage += delegate(object sender, SmartSchool.API.PlugIn.Import.ImportPackageEventArgs e)
+            wizard.ImportPackage += delegate (object sender, SmartSchool.API.PlugIn.Import.ImportPackageEventArgs e)
             {
                 bool hasUpdate = false, hasInsert = false;
 
@@ -368,7 +369,8 @@ namespace Discipline_For_KH
                         //else 
                         //    registerdate = DateTime.Now;                        
 
-                        string reason = row["事由"];
+                        string reason = row.ContainsKey("事由") ? row["事由"] : "";
+                        string remark = row.ContainsKey("備註") ? row["備註"] : "";
                         bool match = false;
                         foreach (JHMeritRecord rewardInfo in CacheDiscipline.Values.Where(x => x.RefStudentID == row.ID))
                         {
@@ -396,6 +398,7 @@ namespace Discipline_For_KH
                                 record.OccurDate = occurdate;
                                 record.RegisterDate = registerdate;
                                 record.Reason = reason;
+                                record.Remark = remark;
                                 record.ID = rewardInfo.ID;
 
                                 updateDisciplines.Add(record);
@@ -419,6 +422,7 @@ namespace Discipline_For_KH
                             record.Semester = semester;
                             record.OccurDate = occurdate;
                             record.Reason = reason;
+                            record.Remark = remark;
                             record.RegisterDate = registerdate;
 
                             insertDisciplines.Add(record);
@@ -437,6 +441,7 @@ namespace Discipline_For_KH
                         DateTime? registerdate = null;
                         bool ultimateAdmonition = false;
                         string reason = row.ContainsKey("事由") ? row["事由"] : "";
+                        string remark = row.ContainsKey("備註") ? row["備註"] : "";
 
                         if (row.ContainsKey("大功"))
                             awardA = (row["大功"] == "") ? 0 : int.Parse(row["大功"]);
@@ -465,6 +470,7 @@ namespace Discipline_For_KH
                                 match = true;
                                 #region 其他項目
                                 reason = e.ImportFields.Contains("事由") ? row["事由"] : rewardInfo.Reason;
+                                remark = e.ImportFields.Contains("備註") ? row["備註"] : rewardInfo.Remark;
 
                                 if (e.ImportFields.Contains("登錄日期"))
                                     registerdate = row["登錄日期"] != "" ? K12.Data.DateTimeHelper.Parse(row["登錄日期"]) : null;
@@ -489,6 +495,7 @@ namespace Discipline_For_KH
                                 record.OccurDate = occurdate;
                                 record.RegisterDate = registerdate;
                                 record.Reason = reason;
+                                record.Remark = remark;
                                 record.ID = rewardInfo.ID;
 
                                 updateDisciplines.Add(record);
@@ -513,7 +520,7 @@ namespace Discipline_For_KH
                             record.OccurDate = occurdate;
                             record.RegisterDate = registerdate;
                             record.Reason = reason;
-
+                            record.Remark = remark;
                             insertDisciplines.Add(record);
 
                             hasInsert = true;
@@ -526,7 +533,7 @@ namespace Discipline_For_KH
                 {
                     JHMerit.Update(updateDisciplines);
                     Dictionary<string, K12.Data.StudentRecord> StudentDic = GetStudent(updateDisciplines);
-                    foreach (JHMeritRecord record in updateDisciplines)
+                    foreach (MeritRecord record in updateDisciplines)
                     {
                         if (StudentDic.ContainsKey(record.RefStudentID))
                             Log_sb.AppendLine(GetLogContext(record, StudentDic[record.RefStudentID], "更新獎勵記錄"));
@@ -536,7 +543,7 @@ namespace Discipline_For_KH
                 {
                     JHMerit.Insert(insertDisciplines);
                     Dictionary<string, K12.Data.StudentRecord> StudentDic = GetStudent(insertDisciplines);
-                    foreach (JHMeritRecord record in insertDisciplines)
+                    foreach (MeritRecord record in insertDisciplines)
                     {
                         if (StudentDic.ContainsKey(record.RefStudentID))
                             Log_sb.AppendLine(GetLogContext(record, StudentDic[record.RefStudentID], "新增獎勵記錄"));
@@ -544,15 +551,26 @@ namespace Discipline_For_KH
                 }
                 if (hasUpdate || hasInsert)
                 {
+                    Log_sb.AppendLine("「本功能支援獎勵為0資料」");
                     FISCA.LogAgent.ApplicationLog.Log("匯入獎勵記錄(For高雄)", "新增或更新", Log_sb.ToString());
                 }
             };
         }
 
-        private string GetLogContext(JHMeritRecord record, K12.Data.StudentRecord studentRecord, string flag)
+        private string GetLogContext(MeritRecord record, K12.Data.StudentRecord studentRecord, string flag)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("學生「" + studentRecord.Name + "」" + flag + ",日期「" + record.OccurDate.ToShortDateString() + "」");
+            if (record.MeritFlag == "1")
+            {
+                sb.AppendLine("獎勵：");
+                sb.AppendLine("班級「" + (studentRecord.Class != null ? studentRecord.Class.Name : "") + "」座號「" + (studentRecord.SeatNo.HasValue ? "" + studentRecord.SeatNo.Value : "") + "」姓名「" + studentRecord.Name + "」");
+                sb.AppendLine("日期「" + record.OccurDate.ToShortDateString() + "」");
+                sb.AppendLine("大功「" + record.MeritA + "」小功「" + record.MeritB + "」嘉獎「" + record.MeritC + "」");
+            }
+
+            sb.AppendLine("事由「" + record.Reason + "」");
+            sb.AppendLine("備註「" + record.Remark + "」");
+            sb.AppendLine("");
             return sb.ToString();
         }
 

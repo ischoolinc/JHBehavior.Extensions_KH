@@ -322,7 +322,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
                     }
                     if (LogDemeritList[0].DemeritC.HasValue)
                     {
-                        sb.Append("警告「" + LogDemeritList[0].DemeritC.Value.ToString() + "」");
+                        sb.AppendLine("警告「" + LogDemeritList[0].DemeritC.Value.ToString() + "」");
                     }
                     sb.AppendLine("懲戒事由「" + LogDemeritList[0].Reason + "」");
                     sb.AppendLine("備註「" + LogDemeritList[0].Remark + "」");
@@ -335,7 +335,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
                     #region 批次新增Log
                     StringBuilder sb = new StringBuilder();
                     sb.AppendLine("批次新增懲戒資料");
-                    sb.Append("日期「" + LogDemeritList[0].OccurDate.ToShortDateString() + "」");
+                    sb.AppendLine("日期「" + LogDemeritList[0].OccurDate.ToShortDateString() + "」");
                     sb.AppendLine("共「" + LogDemeritList.Count + "」名學生，");
                     sb.AppendLine("詳細資料：");
                     if (LogDemeritList[0].DemeritA.HasValue)
@@ -348,7 +348,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
                     }
                     if (LogDemeritList[0].DemeritC.HasValue)
                     {
-                        sb.Append("警告「" + LogDemeritList[0].DemeritC.Value.ToString() + "」");
+                        sb.AppendLine("警告「" + LogDemeritList[0].DemeritC.Value.ToString() + "」");
                     }
                     sb.AppendLine("懲戒事由「" + LogDemeritList[0].Reason + "」");
                     sb.AppendLine("備註「" + LogDemeritList[0].Remark + "」");

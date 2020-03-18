@@ -325,7 +325,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
                     }
                     if (LogMeritList[0].MeritC.HasValue)
                     {
-                        sb.Append("嘉獎「" + LogMeritList[0].MeritC.Value.ToString() + "」");
+                        sb.AppendLine("嘉獎「" + LogMeritList[0].MeritC.Value.ToString() + "」");
                     }
                     sb.AppendLine("獎勵事由「" + LogMeritList[0].Reason + "」");
                     sb.AppendLine("備註「" + LogMeritList[0].Remark + "」");
@@ -338,7 +338,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
                     #region 批次新增Log
                     StringBuilder sb = new StringBuilder();
                     sb.AppendLine("批次新增獎勵資料");
-                    sb.Append("日期「" + LogMeritList[0].OccurDate.ToShortDateString() + "」");
+                    sb.AppendLine("日期「" + LogMeritList[0].OccurDate.ToShortDateString() + "」");
                     sb.AppendLine("共「" + LogMeritList.Count + "」名學生，");
                     sb.AppendLine("詳細資料：");
                     if (LogMeritList[0].MeritA.HasValue)
@@ -351,7 +351,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
                     }
                     if (LogMeritList[0].MeritC.HasValue)
                     {
-                        sb.Append("嘉獎「" + LogMeritList[0].MeritC.Value.ToString() + "」");
+                        sb.AppendLine("嘉獎「" + LogMeritList[0].MeritC.Value.ToString() + "」");
                     }
                     sb.AppendLine("獎勵事由「" + LogMeritList[0].Reason + "」");
                     sb.AppendLine("備註「" + LogMeritList[0].Remark + "」");
