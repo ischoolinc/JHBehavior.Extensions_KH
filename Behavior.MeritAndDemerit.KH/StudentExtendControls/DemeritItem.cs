@@ -332,7 +332,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
         {
             if (listView.SelectedItems.Count == 1)
             {
-                DemeritEditForm editor = new DemeritEditForm(listView.SelectedItems[0].Tag as JHDemeritRecord, UserPermission);
+                DemeritEditForm editor = new DemeritEditForm(listView.SelectedItems[0].Tag as K12.Data.DemeritRecord, UserPermission);
                 editor.ShowDialog();
             }
         }

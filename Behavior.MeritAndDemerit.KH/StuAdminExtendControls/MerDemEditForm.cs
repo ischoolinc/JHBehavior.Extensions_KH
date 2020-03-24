@@ -14,7 +14,6 @@ using SmartSchool.Common;
 using JHSchool.Feature;
 using Framework;
 using JHSchool.Behavior.Feature;
-using JHSchool.Data;
 using FISCA.LogAgent;
 //using SmartSchool;
 
@@ -367,8 +366,8 @@ left join class on class.id=student.ref_class_id");
             if (cbRange.SelectedIndex == 0)
             {
                 #region 班級座號
-                KeyValuePair<string, ClassRecord> item = (KeyValuePair<string, ClassRecord>)cbClass.SelectedItem;
-                ClassRecord classR = item.Value;
+                KeyValuePair<string, K12.Data.ClassRecord> item = (KeyValuePair<string, K12.Data.ClassRecord>)cbClass.SelectedItem;
+                K12.Data.ClassRecord classR = item.Value;
                 StRecord SeleteStud = null;
 
                 if (classList.ContainsKey(classR.Name))
@@ -438,7 +437,7 @@ left join class on class.id=student.ref_class_id");
             else if (cbRange.SelectedIndex == 2)
             {
                 #region 班級
-                KeyValuePair<string, ClassRecord> item = (KeyValuePair<string, ClassRecord>)cbClass.SelectedItem;
+                KeyValuePair<string, K12.Data.ClassRecord> item = (KeyValuePair<string, K12.Data.ClassRecord>)cbClass.SelectedItem;
 
                 if (item.Value.Students.Count == 0)
                 {
@@ -459,14 +458,14 @@ left join class on class.id=student.ref_class_id");
             else if (cbRange.SelectedIndex == 3)
             {
                 #region 年級
-                KeyValuePair<string, List<ClassRecord>> item = (KeyValuePair<string, List<ClassRecord>>)cbClass.SelectedItem;
-                List<ClassRecord> classRList = item.Value;
+                KeyValuePair<string, List<K12.Data.ClassRecord>> item = (KeyValuePair<string, List<K12.Data.ClassRecord>>)cbClass.SelectedItem;
+                List<K12.Data.ClassRecord> classRList = item.Value;
                 List<StRecord> stud = new List<StRecord>();
                 //
                 //ClassRecord classR = item.Value;
                 //StRecord SeleteStud = null;
 
-                foreach (ClassRecord cr in classRList)
+                foreach (K12.Data.ClassRecord cr in classRList)
                 {
                     if (classList.ContainsKey(cr.Name))
                     {
@@ -629,7 +628,7 @@ left join class on class.id=student.ref_class_id");
 
             foreach (K12.Data.DisciplineRecord eachDis in DisciplineList)
             {
-                K12.Data.StudentRecord SR = JHStudent.SelectByID(eachDis.RefStudentID); //取得學生
+                K12.Data.StudentRecord SR = K12.Data.Student.SelectByID(eachDis.RefStudentID); //取得學生
 
                 string discipline = GetDisciplineString(eachDis);
 
@@ -1041,7 +1040,7 @@ left join class on class.id=student.ref_class_id");
                 }
                 try
                 {
-                    JHDiscipline.Delete(DelRowIdList);
+                    K12.Data.Discipline.Delete(DelRowIdList);
                 }
                 catch
                 {
@@ -1176,7 +1175,7 @@ left join class on class.id=student.ref_class_id");
                     each.SchoolYear = ssy._schoolYear;
                     each.Semester = ssy._semester;
                 }
-                JHDiscipline.Update(list);
+                K12.Data.Discipline.Update(list);
 
                 ApplicationLog.Log("獎懲批次修改", "更新", sb.ToString());
                 FISCA.Presentation.Controls.MsgBox.Show("儲存成功!");
