@@ -15,6 +15,7 @@ using Framework.Security;
 using FCode = Framework.Security.FeatureCodeAttribute;
 using Framework;
 using FISCA.DSAUtil;
+using Campus.Windows;
 
 namespace JHSchool.Behavior.MeritAndDemerit_KH
 {
@@ -72,6 +73,12 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
 
         private void DemeritUnifytForm_Load(object sender, EventArgs e)
         {
+            List<string> cols1 = new List<string>() { "大功", "小功", "嘉獎" };
+            DataGridViewImeDecorator dec1 = new DataGridViewImeDecorator(this.dgvMerit, cols1);
+
+            List<string> cols2 = new List<string>() { "大過", "小過", "警告" };
+            DataGridViewImeDecorator dec2 = new DataGridViewImeDecorator(this.dgvDemerit, cols2);
+
             lbHelp1.Text = _SchoolYear + "學年度　第" + _Semester + "學期　獎勵 / 懲戒記錄";
 
             BGW.DoWork += new DoWorkEventHandler(BgW_DoWork);
@@ -467,15 +474,15 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
             studs.Add(K12.Data.Student.SelectByID(_StudentID));
             MeritEditForm editForm;
             //判斷是否為LockMode
-            if(_LockMode)
+            if (_LockMode)
             {
-                editForm = new MeritEditForm(studs, _SchoolYear.ToString(), _Semester.ToString(),true);  //此編輯表單在新增模式下允許一次對多位學生新增相同的懲戒記錄，所以 Constructor 要傳入學生的集合。
+                editForm = new MeritEditForm(studs, _SchoolYear.ToString(), _Semester.ToString(), true);  //此編輯表單在新增模式下允許一次對多位學生新增相同的懲戒記錄，所以 Constructor 要傳入學生的集合。
             }
             else
             {
                 editForm = new MeritEditForm(studs, _SchoolYear.ToString(), _Semester.ToString());  //此編輯表單在新增模式下允許一次對多位學生新增相同的懲戒記錄，所以 Constructor 要傳入學生的集合。
             }
-            
+
             editForm.ShowDialog();
         }
 
@@ -515,7 +522,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
             {
                 K12.Data.MeritRecord record = item.Tag as K12.Data.MeritRecord;
                 MeritList.Add(record);
-            }  
+            }
 
             try
             {
@@ -546,7 +553,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
             sb.AppendLine("獎勵資料已被刪除。");
 
             ApplicationLog.Log("學務系統.獎勵資料", "刪除學生獎勵資料", "student", _StudentID, sb.ToString());
-            
+
             FISCA.Presentation.Controls.MsgBox.Show("刪除獎勵資料成功");
         }
 
@@ -557,15 +564,15 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
             studs.Add(K12.Data.Student.SelectByID(_StudentID));
             DemeritEditForm editForm;
             //判斷是否為LockMode
-            if(_LockMode)
+            if (_LockMode)
             {
-                editForm = new DemeritEditForm(studs, _SchoolYear.ToString(), _Semester.ToString(),true);  //此編輯表單在新增模式下允許一次對多位學生新增相同的懲戒記錄，所以 Constructor 要傳入學生的集合。
+                editForm = new DemeritEditForm(studs, _SchoolYear.ToString(), _Semester.ToString(), true);  //此編輯表單在新增模式下允許一次對多位學生新增相同的懲戒記錄，所以 Constructor 要傳入學生的集合。
             }
             else
             {
                 editForm = new DemeritEditForm(studs, _SchoolYear.ToString(), _Semester.ToString());  //此編輯表單在新增模式下允許一次對多位學生新增相同的懲戒記錄，所以 Constructor 要傳入學生的集合。
             }
-            
+
             editForm.ShowDialog();
         }
 
@@ -605,7 +612,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
             {
                 K12.Data.DemeritRecord record = item.Tag as K12.Data.DemeritRecord;
                 DemeritList.Add(record);
-            }    
+            }
 
             try
             {
@@ -636,7 +643,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
             sb.AppendLine("懲戒資料已被刪除。");
 
             ApplicationLog.Log("學務系統.懲戒資料", "刪除學生懲戒資料", "student", _StudentID, sb.ToString());
-            
+
             FISCA.Presentation.Controls.MsgBox.Show("刪除懲戒資料成功");
         }
 
@@ -690,8 +697,8 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
                 this.btnDemeritClear.Enabled = true;
 
                 this.btnDemeritClear.Text = (string.IsNullOrEmpty(dr.Cleared) ? "銷過" : "取消銷過");
-            } 
-        
+            }
+
         }
 
         /// <summary>
@@ -727,7 +734,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
                 sb.AppendLine("大功「" + dgvMerit.Rows[1].Cells[1].Value + "」");
                 sb.AppendLine("小功「" + dgvMerit.Rows[1].Cells[2].Value + "」");
                 sb.AppendLine("嘉獎「" + dgvMerit.Rows[1].Cells[3].Value + "」");
-               
+
                 #region 有這個物件(註解)
                 //if (MSRecord.InitialSummary.InnerXml != "") //如果不是空的
                 //{
@@ -895,7 +902,7 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
                 {
                     FISCA.Presentation.Controls.MsgBox.Show("新增,儲存失敗");
                     return;
-                } 
+                }
                 #endregion
 
                 ApplicationLog.Log("學務系統.獎懲學期統計", "修改學生非明細獎勵統計", "student", _StudentID, sb.ToString());
