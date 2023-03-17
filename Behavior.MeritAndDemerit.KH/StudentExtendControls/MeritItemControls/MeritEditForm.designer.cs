@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.cboReasonRef = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.labelX3 = new DevComponents.DotNetBar.LabelX();
             this.btnExit = new DevComponents.DotNetBar.ButtonX();
@@ -58,10 +59,12 @@
             this.intSchoolYear = new DevComponents.Editors.IntegerInput();
             this.cbRemark = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.labelX8 = new DevComponents.DotNetBar.LabelX();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeInput1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeInput2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.intSemester)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.intSchoolYear)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // cboReasonRef
@@ -533,6 +536,10 @@
             this.labelX8.TabIndex = 14;
             this.labelX8.Text = "備註";
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // MeritEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -571,6 +578,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeInput2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.intSemester)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.intSchoolYear)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -608,5 +616,6 @@
         private DevComponents.Editors.IntegerInput intSchoolYear;
         private DevComponents.DotNetBar.Controls.ComboBoxEx cbRemark;
         private DevComponents.DotNetBar.LabelX labelX8;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
