@@ -64,7 +64,6 @@ namespace JHSchool.Behavior.MeritAndDemerit_KH
                 catch (Exception ex)
                 {
                     MsgBox.Show("儲存發生錯誤:\n" + ex.Message);
-                    SmartSchool.ErrorReporting.ReportingService.ReportException(ex);
                 }
             }
         }

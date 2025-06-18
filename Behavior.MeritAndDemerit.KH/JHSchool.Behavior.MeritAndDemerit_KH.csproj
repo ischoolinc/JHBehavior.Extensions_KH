@@ -120,11 +120,6 @@
       <HintPath>Library\SmartSchool.Common.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="SmartSchool.ErrorReporting, Version=1.0.2.3, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Library\SmartSchool.ErrorReporting.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -309,7 +304,11 @@
     <Content Include="Library\Aspose.Cells.xml" />
     <Content Include="Library\Aspose.Words.dll" />
     <Content Include="Library\Aspose.Words.xml" />
+    <Content Include="Library\Campus.Windows.dll" />
+    <Content Include="Library\Campus.Windows.pdb" />
+    <Content Include="Library\Campus.Windows.xml" />
     <Content Include="Library\FISCA.Data.dll" />
+    <Content Include="Library\FISCA.Data.pdb" />
     <Content Include="Library\FISCA.Data.xml" />
     <Content Include="Library\FISCA.dll" />
     <Content Include="Library\FISCA.DSAClient.dll" />
@@ -321,9 +320,8 @@
     <Content Include="Library\FISCA.UDT.pdb" />
     <Content Include="Library\FISCA.UDT.xml" />
     <Content Include="Library\Framework.dll" />
-    <Content Include="Library\JHSchool.Affair.dll" />
-    <Content Include="Library\JHSchool.Affair.pdb" />
     <Content Include="Library\JHSchool.Behavior.dll" />
+    <Content Include="Library\JHSchool.Behavior.pdb" />
     <Content Include="Library\JHSchool.Data.dll" />
     <Content Include="Library\JHSchool.dll" />
     <Content Include="Library\K12.Data.dll" />
@@ -331,9 +329,6 @@
     <Content Include="Library\K12.Data.xml" />
     <Content Include="Library\K12.Presentation.dll" />
     <Content Include="Library\SmartSchool.Common.dll" />
-    <Content Include="Library\SmartSchool.ErrorReporting.dll" />
-    <Content Include="Library\SmartSchool.ErrorReporting.pdb" />
-    <Content Include="Library\SmartSchool.ErrorReporting.xml" />
     <None Include="Resources\star_write_64.png" />
   </ItemGroup>
   <ItemGroup />
